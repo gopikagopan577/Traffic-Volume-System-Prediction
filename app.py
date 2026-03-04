@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
+import os
 import joblib
 
-# load model
+if not os.path.exists("traffic_pipeline.pkl"):
+    from train_model import train_and_save_model
+    train_and_save_model()
+
 model = joblib.load("traffic_pipeline.pkl")
 
 st.set_page_config(page_title="Traffic Volume Prediction", layout="wide")
